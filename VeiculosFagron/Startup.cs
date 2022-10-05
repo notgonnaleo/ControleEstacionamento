@@ -30,7 +30,10 @@ namespace VeiculosFagron
         {
             services.AddControllers().AddNewtonsoftJson();
 
+            services.AddHttpContextAccessor();
+
             services.AddSingleton<IVeiculoRepository, VeiculoRepository>();
+            services.AddSingleton<IModeloRepository, ModeloRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
