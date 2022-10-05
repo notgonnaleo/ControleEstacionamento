@@ -18,7 +18,6 @@ namespace VeiculosFagron.Repository
 
         private readonly IConfiguration _config;
 
-
         public VeiculoRepository(IConfiguration config)
         {
             _config = config;
@@ -39,7 +38,6 @@ namespace VeiculosFagron.Repository
             return response;
 
         }
-
         public async Task<Veiculo> GetVeiculo(int id_veiculo)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
@@ -85,7 +83,6 @@ namespace VeiculosFagron.Repository
                 return false;
             }
         }
-
         public async Task<bool> UpdateVeiculo(Veiculo model)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
@@ -121,7 +118,6 @@ namespace VeiculosFagron.Repository
                 return false;
             }
         }
-
         public async Task<bool> DeleteVeiculo(Veiculo model)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));

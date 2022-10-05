@@ -13,7 +13,7 @@ namespace VeiculosFagron.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ModeloController : ControllerBase
+    public class PlacaController : ControllerBase
     {
         #region Injeção de Dependências 
 
@@ -21,35 +21,35 @@ namespace VeiculosFagron.Controllers
         private readonly IConfiguration _config;
 
         // Configuração e injeção dos Log de erros usando a biblioteca "Serilog"
-        private readonly ILogger<ModeloController> _logger;
+        private readonly ILogger<PlacaController> _logger;
 
         // Declarando Repository dos veiculos para retornar logs
-        private readonly IModeloRepository _modeloRepository;
+        private readonly IPlacaRepository _placaRepository;
 
         // Declarando e armazenando as configurações de dependências
-        public ModeloController(IConfiguration config, ILogger<ModeloController> logger, IModeloRepository modeloRepository)
+        public PlacaController(IConfiguration config, ILogger<PlacaController> logger, IPlacaRepository placaRepository)
         {
             _config = config;
             _logger = logger;
-            _modeloRepository = modeloRepository;
+            _placaRepository = placaRepository;
         }
 
         #endregion
 
-        #region Modelos
+        #region Placas
 
         [HttpGet]
-        [Route("getModelos")]
-        public async Task<ActionResult<List<Modelo>>> getModelos()
+        [Route("getPlacas")]
+        public async Task<ActionResult<List<Placa>>> getPlacas()
         {
             try
             {
-                var data = await _modeloRepository.GetModelos();
+                var data = await _placaRepository.GetPlacas();
                 return Ok(data);
             }
             catch(Exception ex)
             {
-                _logger.LogError(ex, "GetModelos: Erro na requisição dos dados");
+                _logger.LogError(ex, "GetPlacas: Erro na requisição dos dados");
                 return new StatusCodeResult(500);
             }
 
@@ -57,16 +57,16 @@ namespace VeiculosFagron.Controllers
 
         [HttpGet]
         [Route("getModelo/{id_modelo}")]
-        public async Task<ActionResult<Modelo>> getModelo(int id_modelo)
+        public async Task<ActionResult<Placa>> getPlaca(int id_placa)
         {
             try
             {
-                var data = await _modeloRepository.GetModelo(id_modelo);
+                var data = await _placaRepository.GetPlaca(id_placa);
                 return Ok(data);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "GetModelo: Erro na requisição dos dados");
+                _logger.LogError(ex, "GetPlaca: Erro na requisição dos dados");
                 return new StatusCodeResult(500);
             }
 
@@ -74,33 +74,34 @@ namespace VeiculosFagron.Controllers
 
         [HttpPost]
         [Route("createModelo")]
-        public async Task<ActionResult<bool>> createModelo(Modelo model)
+        public async Task<ActionResult<bool>> createPlaca(Placa model)
         {
             try
             {
-                var data = await _modeloRepository.CreateModelo(model);
+                var data = await _placaRepository.CreatePlaca(model);
                 return data;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "CreateModelo: Erro na requisição dos dados");
+                _logger.LogError(ex, "CreatePlaca: Erro na requisição dos dados");
                 return false;
             }
 
         }
 
+
         [HttpPut]
         [Route("updateModelo")]
-        public async Task<ActionResult<bool>> updateModelo(Modelo model)
+        public async Task<ActionResult<bool>> updatePlaca(Placa model)
         {
             try
             {
-                var data = await _modeloRepository.UpdateModelo(model);
+                var data = await _placaRepository.UpdatePlaca(model);
                 return data;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "UpdateModelo: Erro na requisição dos dados");
+                _logger.LogError(ex, "UpdatePlaca: Erro na requisição dos dados");
                 return false;
             }
 
@@ -108,16 +109,16 @@ namespace VeiculosFagron.Controllers
 
         [HttpDelete]
         [Route("deleteModelo")]
-        public async Task<ActionResult<bool>> deleteModelo(Modelo model)
+        public async Task<ActionResult<bool>> deletePlaca(Placa model)
         {
             try
             {
-                var data = await _modeloRepository.DeleteModelo(model);
+                var data = await _placaRepository.DeletePlaca(model);
                 return data;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "DeleteModelo: Erro na requisição dos dados");
+                _logger.LogError(ex, "DeletePlaca: Erro na requisição dos dados");
                 return false;
             }
 
