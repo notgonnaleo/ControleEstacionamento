@@ -36,7 +36,7 @@ namespace VeiculosFagron
             services.AddSingleton<IModeloRepository, ModeloRepository>();
             services.AddSingleton<IPlacaRepository, PlacaRepository>();
             services.AddSingleton<IBloqueioTransitoRepository, BloqueioTransitoRepository>();
-
+            services.AddSingleton<ITenantRepository, TenantRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
