@@ -72,6 +72,23 @@ namespace VeiculosFagron.Controllers
 
         }
 
+        [HttpPost]
+        [Route("createTenant")]
+        public async Task<ActionResult<bool>> createTenant(Tenant model)
+        {
+            try
+            {
+                var data = await _tenantRepository.CreateTenant(model);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "CreateTenant: Erro na requisição dos dados");
+                return false;
+            }
+
+        }
+
         #endregion
 
     }

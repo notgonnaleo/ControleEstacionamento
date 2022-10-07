@@ -54,5 +54,32 @@ namespace VeiculosFagron.Repository
             return response;
 
         }
+        public async Task<bool> CreateTenant(Tenant model)
+        {
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+
+            var param = new DynamicParameters();
+
+            param.Add("id_veiculo", model.id_veiculo, direction: ParameterDirection.Input);
+            param.Add("id_tenant", model.id_tenant, direction: ParameterDirection.Input);
+   
+
+            var Id = "(SELECT isnull(max(id_tenant),0)+1 AS id_tenant FROM Tenant)";
+
+            var query = $@"INSERT INTO Tenant (id_tenant, id_veiculo)
+                        VALUES
+                        ({Id}, @id_veiculo)";
+
+            var response = await connection.ExecuteAsync(query, param);
+
+            if (response > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

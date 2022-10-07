@@ -9,6 +9,6 @@ namespace VeiculosFagron.Repository
     {
         public Task<List<Tenant>> GetTenant();
         public Task<Tenant> GetTenant(int id_tenant);
-
+        public Task<bool> CreateTenant(Tenant model);
     }
 }
