@@ -105,6 +105,23 @@ namespace VeiculosFagron.Controllers
             }
 
         }
+
+        [HttpDelete]
+        [Route("deleteTenant")]
+        public async Task<ActionResult<bool>> deleteTenant(Tenant model)
+        {
+            try
+            {
+                var data = await _tenantRepository.DeleteTenant(model);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "DeleteTenant: Erro na requisição dos dados");
+                return false;
+            }
+
+        }
         #endregion
 
     }

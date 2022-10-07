@@ -111,5 +111,31 @@ namespace VeiculosFagron.Repository
                 return false;
             }
         }
+
+        public async Task<bool> DeleteTenant(Tenant model)
+        {
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+
+            var param = new DynamicParameters();
+
+            param.Add("id_tenant", model.id_tenant, direction: ParameterDirection.Input);
+            param.Add("id_veiculo", model.id_veiculo, direction: ParameterDirection.Input);
+
+            var query = @"DELETE FROM Tenant 
+                        WHERE id_tenant = @id_tenant ";
+
+
+
+            var response = await connection.ExecuteAsync(query, param);
+
+            if (response > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
