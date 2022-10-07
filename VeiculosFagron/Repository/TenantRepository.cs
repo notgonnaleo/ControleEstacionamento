@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,35 @@ namespace VeiculosFagron.Repository
             var query = $@"INSERT INTO Tenant (id_tenant, id_veiculo)
                         VALUES
                         ({Id}, @id_veiculo)";
+
+            var response = await connection.ExecuteAsync(query, param);
+
+            if (response > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateTenant(Tenant model)
+        {
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+
+            var param = new DynamicParameters();
+
+            param.Add("id_tenant", model.id_tenant, direction: ParameterDirection.Input);
+            param.Add("id_veiculo", model.id_veiculo, direction: ParameterDirection.Input);
+
+            var query = @"UPDATE Tenant SET
+                        id_veiculo = @id_veiculo
+                        WHERE 
+                        id_tenant = @id_tenant "
+            ;
+
+
 
             var response = await connection.ExecuteAsync(query, param);
 

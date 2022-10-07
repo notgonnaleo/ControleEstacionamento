@@ -89,6 +89,22 @@ namespace VeiculosFagron.Controllers
 
         }
 
+        [HttpPut]
+        [Route("updateTenant")]
+        public async Task<ActionResult<bool>> updateTenant(Tenant model)
+        {
+            try
+            {
+                var data = await _tenantRepository.UpdateTenant(model);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "UpdateTenant: Erro na requisição dos dados");
+                return false;
+            }
+
+        }
         #endregion
 
     }
