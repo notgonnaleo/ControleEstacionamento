@@ -91,6 +91,22 @@ namespace VeiculosFagron.Controllers
 
         }
 
+        [HttpPut]
+        [Route("updateCor")]
+        public async Task<ActionResult<bool>> updateCor(Cor model)
+        {
+            try
+            {
+                var data = await _corRepository.UpdateCor(model);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "UpdateCor: Erro na requisição dos dados");
+                return false;
+            }
+
+        }
         #endregion
 
     }

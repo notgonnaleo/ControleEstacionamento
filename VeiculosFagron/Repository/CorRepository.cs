@@ -83,5 +83,34 @@ namespace VeiculosFagron.Repository
                 return false;
             }
         }
+
+        public async Task<bool> UpdateCor(Cor model)
+        {
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+
+            var param = new DynamicParameters();
+
+            param.Add("id_cor", model.id_cor, direction: ParameterDirection.Input);
+            param.Add("nome_cor", model.nome_cor, direction: ParameterDirection.Input);
+
+            var query = @"UPDATE Cor SET
+                        nome_cor = @nome_cor
+                        WHERE 
+                        id_cor = @id_cor "
+            ;
+
+
+
+            var response = await connection.ExecuteAsync(query, param);
+
+            if (response > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
