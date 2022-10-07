@@ -42,4 +42,40 @@ cd \source\repos\VeiculosBackEnd>
 Colocar o Schema Aqui!
 ```
 
+# Rotas
+
+### Veículos
+
+- **GET /Veiculo/getVeiculos**
+
+Confira os Veículos registrados no banco de dados
+
+Esquema da requisição:
+
+>https://localhost:44312/swagger/index.html
+
+Esquema da resposta:
+
+```json
+[
+  {
+    "id_veiculo": 1,
+    "data_cadastro": "2022-10-05T00:22:55.997",
+    "id_placa": 1,
+    "id_cor": 2,
+    "km": 2000,
+    "id_modelo": 2
+  },
+  {
+    "id_veiculo": 2,
+    "data_cadastro": "2022-10-07T20:30:49.197",
+    "id_placa": 3,
+    "id_cor": 5,
+    "km": 0,
+    "id_modelo": 2
+  }
+]
+```
+---
+
 
