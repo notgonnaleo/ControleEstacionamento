@@ -40,6 +40,21 @@ namespace VeiculosFagron.Repository
 
         }
 
-       
+        public async Task<Cor> GetCor(int id_cor)
+        {
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+
+
+            var param = new DynamicParameters();
+            param.Add("id_cor", id_cor, direction: ParameterDirection.Input);
+
+            var query = @"SELECT * FROM Cor(nolock) WHERE id_cor = @id_cor";
+
+            var response = await connection.QueryFirstAsync<Cor>(query, param);
+
+            return response;
+
+        }
+
     }
 }

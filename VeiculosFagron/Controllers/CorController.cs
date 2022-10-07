@@ -55,6 +55,23 @@ namespace VeiculosFagron.Controllers
 
         }
 
+
+        [HttpGet]
+        [Route("getCor/{id_cor}")]
+        public async Task<ActionResult<Cor>> getCor(int id_cor)
+        {
+            try
+            {
+                var data = await _corRepository.GetCor(id_cor);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "GetCor: Erro na requisição dos dados");
+                return new StatusCodeResult(500);
+            }
+
+        }
         #endregion
 
     }
