@@ -38,6 +38,21 @@ namespace VeiculosFagron.Repository
             return response;
 
         }
-       
+
+        public async Task<Tenant> GetTenant(int id_tenant)
+        {
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+
+
+            var param = new DynamicParameters();
+            param.Add("id_tenant", id_tenant, direction: ParameterDirection.Input);
+
+            var query = @"SELECT * FROM Tenant(nolock) WHERE id_tenant = @id_tenant";
+
+            var response = await connection.QueryFirstAsync<Tenant>(query, param);
+
+            return response;
+
+        }
     }
 }

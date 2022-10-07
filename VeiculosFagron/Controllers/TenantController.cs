@@ -55,6 +55,22 @@ namespace VeiculosFagron.Controllers
 
         }
 
+        [HttpGet]
+        [Route("getTenant/{id_tenant}")]
+        public async Task<ActionResult<Tenant>> getTenant(int id_tenant)
+        {
+            try
+            {
+                var data = await _tenantRepository.GetTenant(id_tenant);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "GetTenant: Erro na requisição dos dados");
+                return new StatusCodeResult(500);
+            }
+
+        }
 
         #endregion
 

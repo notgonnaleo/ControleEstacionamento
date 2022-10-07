@@ -8,7 +8,7 @@ namespace VeiculosFagron.Repository
     public interface ITenantRepository
     {
         public Task<List<Tenant>> GetTenant();
-       
+        public Task<Tenant> GetTenant(int id_tenant);
 
     }
 }
