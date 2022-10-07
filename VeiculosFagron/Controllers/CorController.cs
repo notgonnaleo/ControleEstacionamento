@@ -107,6 +107,24 @@ namespace VeiculosFagron.Controllers
             }
 
         }
+
+
+        [HttpDelete]
+        [Route("deleteCor")]
+        public async Task<ActionResult<bool>> deleteCor(Cor model)
+        {
+            try
+            {
+                var data = await _corRepository.DeleteCor(model);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "DeleteCor: Erro na requisição dos dados");
+                return false;
+            }
+
+        }
         #endregion
 
     }

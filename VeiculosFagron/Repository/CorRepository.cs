@@ -112,5 +112,32 @@ namespace VeiculosFagron.Repository
                 return false;
             }
         }
+
+        public async Task<bool> DeleteCor(Cor model)
+        {
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+
+            var param = new DynamicParameters();
+
+            param.Add("id_cor", model.id_cor, direction: ParameterDirection.Input);
+            param.Add("nome_cor", model.nome_cor, direction: ParameterDirection.Input);
+
+            var query = @"DELETE FROM Cor 
+                        WHERE id_cor = @id_cor ";
+
+
+
+            var response = await connection.ExecuteAsync(query, param);
+
+            if (response > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
+
