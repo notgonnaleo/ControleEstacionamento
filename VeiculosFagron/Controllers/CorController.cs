@@ -39,12 +39,12 @@ namespace VeiculosFagron.Controllers
         #region Cor
 
         [HttpGet]
-        [Route("getCor")]
-        public async Task<ActionResult<List<Cor>>> getCor()
+        [Route("getCores")]
+        public async Task<ActionResult<List<Cor>>> getCores()
         {
             try
             {
-                var data = await _corRepository.GetCor();
+                var data = await _corRepository.GetCores();
                 return Ok(data);
             }
             catch(Exception ex)
@@ -72,6 +72,25 @@ namespace VeiculosFagron.Controllers
             }
 
         }
+
+
+        [HttpPost]
+        [Route("createCor")]
+        public async Task<ActionResult<bool>> createCor(Cor model)
+        {
+            try
+            {
+                var data = await _corRepository.CreateCor(model);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "CreateCor: Erro na requisição dos dados");
+                return false;
+            }
+
+        }
+
         #endregion
 
     }

@@ -7,7 +7,8 @@ namespace VeiculosFagron.Repository
 {
     public interface ICorRepository
     {
-        public Task<List<Cor>> GetCor();
+        public Task<List<Cor>> GetCores();
         public Task<Cor> GetCor(int id_cor);
+        public Task<bool> CreateCor(Cor model);
     }
 }

@@ -26,7 +26,7 @@ namespace VeiculosFagron.Repository
         
         #endregion
 
-        public async Task<List<Cor>> GetCor()
+        public async Task<List<Cor>> GetCores()
         {
 
             var response = new List<Cor>();
@@ -56,5 +56,32 @@ namespace VeiculosFagron.Repository
 
         }
 
+        public async Task<bool> CreateCor(Cor model)
+        {
+            using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+
+            var param = new DynamicParameters();
+
+            param.Add("id_cor", model.id_cor, direction: ParameterDirection.Input);
+            param.Add("nome_cor", model.nome_cor, direction: ParameterDirection.Input);
+
+
+            var Id = "(SELECT isnull(max(id_cor),0)+1 AS id_cor FROM Cor)";
+
+            var query = $@"INSERT INTO Cor (id_cor, nome_cor)
+                        VALUES
+                        ({Id}, @nome_cor)";
+
+            var response = await connection.ExecuteAsync(query, param);
+
+            if (response > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
