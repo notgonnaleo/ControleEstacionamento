@@ -13,63 +13,64 @@ using System.Threading.Tasks;
 
 namespace VeiculosFagron.Repository
 {
-    public class TenantRepository : ITenantRepository
+    public class CorRepository : ICorRepository
     {
         #region Injeção de Dependências
 
         private readonly IConfiguration _config;
 
-        public TenantRepository(IConfiguration config)
+        public CorRepository(IConfiguration config)
         {
             _config = config;
         }
         
         #endregion
 
-        public async Task<List<Tenant>> GetTenant()
+        public async Task<List<Cor>> GetCores()
         {
 
-            var response = new List<Tenant>();
+            var response = new List<Cor>();
 
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
-            var query = @"SELECT * FROM Tenant(nolock)";
-            response = (List<Tenant>)await connection.QueryAsync<Tenant>(query);
+            var query = @"SELECT * FROM Cor(nolock)";
+            response = (List<Cor>)await connection.QueryAsync<Cor>(query);
 
             return response;
 
         }
 
-        public async Task<Tenant> GetTenant(int id_tenant)
+        public async Task<Cor> GetCor(int id_cor)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
 
             var param = new DynamicParameters();
-            param.Add("id_tenant", id_tenant, direction: ParameterDirection.Input);
+            param.Add("id_cor", id_cor, direction: ParameterDirection.Input);
 
-            var query = @"SELECT * FROM Tenant(nolock) WHERE id_tenant = @id_tenant";
+            var query = @"SELECT * FROM Cor(nolock) WHERE id_cor = @id_cor";
 
-            var response = await connection.QueryFirstAsync<Tenant>(query, param);
+            var response = await connection.QueryFirstAsync<Cor>(query, param);
 
             return response;
 
         }
-        public async Task<bool> CreateTenant(Tenant model)
+
+        public async Task<bool> CreateCor(Cor model)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
             var param = new DynamicParameters();
 
-            param.Add("id_veiculo", model.id_veiculo, direction: ParameterDirection.Input);
-            param.Add("id_tenant", model.id_tenant, direction: ParameterDirection.Input);
-   
+            param.Add("id_cor", model.id_cor, direction: ParameterDirection.Input);
+            param.Add("nome_cor", model.nome_cor, direction: ParameterDirection.Input);
 
-            var Id = "(SELECT isnull(max(id_tenant),0)+1 AS id_tenant FROM Tenant)";
 
-            var query = $@"INSERT INTO Tenant (id_tenant, id_veiculo)
+            var Id = "(SELECT isnull(max(id_cor),0)+1 AS id_cor FROM Cor)";
+
+            var query = $@"INSERT INTO Cor (id_cor, nome_cor)
                         VALUES
-                        ({Id}, @id_veiculo)";
+                        ({Id}, @nome_cor)";
 
             var response = await connection.ExecuteAsync(query, param);
 
@@ -83,19 +84,19 @@ namespace VeiculosFagron.Repository
             }
         }
 
-        public async Task<bool> UpdateTenant(Tenant model)
+        public async Task<bool> UpdateCor(Cor model)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
             var param = new DynamicParameters();
 
-            param.Add("id_tenant", model.id_tenant, direction: ParameterDirection.Input);
-            param.Add("id_veiculo", model.id_veiculo, direction: ParameterDirection.Input);
+            param.Add("id_cor", model.id_cor, direction: ParameterDirection.Input);
+            param.Add("nome_cor", model.nome_cor, direction: ParameterDirection.Input);
 
-            var query = @"UPDATE Tenant SET
-                        id_veiculo = @id_veiculo
+            var query = @"UPDATE Cor SET
+                        nome_cor = @nome_cor
                         WHERE 
-                        id_tenant = @id_tenant "
+                        id_cor = @id_cor "
             ;
 
 
@@ -112,17 +113,17 @@ namespace VeiculosFagron.Repository
             }
         }
 
-        public async Task<bool> DeleteTenant(Tenant model)
+        public async Task<bool> DeleteCor(Cor model)
         {
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
             var param = new DynamicParameters();
 
-            param.Add("id_tenant", model.id_tenant, direction: ParameterDirection.Input);
-            param.Add("id_veiculo", model.id_veiculo, direction: ParameterDirection.Input);
+            param.Add("id_cor", model.id_cor, direction: ParameterDirection.Input);
+            param.Add("nome_cor", model.nome_cor, direction: ParameterDirection.Input);
 
-            var query = @"DELETE FROM Tenant 
-                        WHERE id_tenant = @id_tenant ";
+            var query = @"DELETE FROM Cor 
+                        WHERE id_cor = @id_cor ";
 
 
 
@@ -139,3 +140,4 @@ namespace VeiculosFagron.Repository
         }
     }
 }
+

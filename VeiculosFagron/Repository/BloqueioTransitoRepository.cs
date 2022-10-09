@@ -32,7 +32,7 @@ namespace VeiculosFagron.Repository
 
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
-            var query = @"SELECT * FROM Placa(nolock)";
+            var query = @"SELECT * FROM BloqueioTransito(nolock)";
             response = (List<BloqueioTransito>)await connection.QueryAsync<BloqueioTransito>(query);
 
             return response;
@@ -46,7 +46,7 @@ namespace VeiculosFagron.Repository
             var param = new DynamicParameters();
             param.Add("id_bloqueio", id_bloqueio, direction: ParameterDirection.Input);
 
-            var query = @"SELECT * FROM Placa(nolock) WHERE id_placa = @id_placa";
+            var query = @"SELECT * FROM BloqueioTransito(nolock) WHERE id_bloqueio = @id_bloqueio";
 
             var response = await connection.QueryFirstAsync<BloqueioTransito>(query, param);
 

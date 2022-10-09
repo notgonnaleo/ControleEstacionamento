@@ -13,7 +13,7 @@ namespace VeiculosFagron.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TenantController : ControllerBase
+    public class CorController : ControllerBase
     {
         #region Injeção de Dependências 
 
@@ -21,103 +21,106 @@ namespace VeiculosFagron.Controllers
         private readonly IConfiguration _config;
 
         // Configuração e injeção dos Log de erros usando a biblioteca "Serilog"
-        private readonly ILogger<TenantController> _logger;
+        private readonly ILogger<CorController> _logger;
 
         // Declarando Repository dos veiculos para retornar logs
-        private readonly ITenantRepository _tenantRepository;
+        private readonly ICorRepository _corRepository;
 
         // Declarando e armazenando as configurações de dependências
-        public TenantController(IConfiguration config, ILogger<TenantController> logger, ITenantRepository tenantRepository)
+        public CorController(IConfiguration config, ILogger<CorController> logger, ICorRepository corRepository)
         {
             _config = config;
             _logger = logger;
-            _tenantRepository = tenantRepository;
+            _corRepository = corRepository;
         }
 
         #endregion
 
-        #region Tenant
+        #region Cor
 
         [HttpGet]
-        [Route("getTenant")]
-        public async Task<ActionResult<List<Tenant>>> getTenant()
+        [Route("getCores")]
+        public async Task<ActionResult<List<Cor>>> getCores()
         {
             try
             {
-                var data = await _tenantRepository.GetTenant();
+                var data = await _corRepository.GetCores();
                 return Ok(data);
             }
             catch(Exception ex)
             {
-                _logger.LogError(ex, "GetTenant: Erro na requisição dos dados");
+                _logger.LogError(ex, "GetCor: Erro na requisição dos dados");
                 return new StatusCodeResult(500);
             }
 
         }
 
+
         [HttpGet]
-        [Route("getTenant/{id_tenant}")]
-        public async Task<ActionResult<Tenant>> getTenant(int id_tenant)
+        [Route("getCor/{id_cor}")]
+        public async Task<ActionResult<Cor>> getCor(int id_cor)
         {
             try
             {
-                var data = await _tenantRepository.GetTenant(id_tenant);
+                var data = await _corRepository.GetCor(id_cor);
                 return Ok(data);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "GetTenant: Erro na requisição dos dados");
+                _logger.LogError(ex, "GetCor: Erro na requisição dos dados");
                 return new StatusCodeResult(500);
             }
 
         }
 
+
         [HttpPost]
-        [Route("createTenant")]
-        public async Task<ActionResult<bool>> createTenant(Tenant model)
+        [Route("createCor")]
+        public async Task<ActionResult<bool>> createCor(Cor model)
         {
             try
             {
-                var data = await _tenantRepository.CreateTenant(model);
+                var data = await _corRepository.CreateCor(model);
                 return data;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "CreateTenant: Erro na requisição dos dados");
+                _logger.LogError(ex, "CreateCor: Erro na requisição dos dados");
                 return false;
             }
 
         }
 
         [HttpPut]
-        [Route("updateTenant")]
-        public async Task<ActionResult<bool>> updateTenant(Tenant model)
+        [Route("updateCor")]
+        public async Task<ActionResult<bool>> updateCor(Cor model)
         {
             try
             {
-                var data = await _tenantRepository.UpdateTenant(model);
+                var data = await _corRepository.UpdateCor(model);
                 return data;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "UpdateTenant: Erro na requisição dos dados");
+                _logger.LogError(ex, "UpdateCor: Erro na requisição dos dados");
                 return false;
             }
 
         }
 
+
         [HttpDelete]
-        [Route("deleteTenant")]
-        public async Task<ActionResult<bool>> deleteTenant(Tenant model)
+        [Route("deleteCor")]
+        public async Task<ActionResult<bool>> deleteCor(Cor model)
         {
             try
             {
-                var data = await _tenantRepository.DeleteTenant(model);
+                var data = await _corRepository.DeleteCor(model);
                 return data;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "DeleteTenant: Erro na requisição dos dados");
+                _logger.LogError(ex, "DeleteCor: Erro na requisição dos dados");
                 return false;
             }
 
