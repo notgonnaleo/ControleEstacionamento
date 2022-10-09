@@ -77,7 +77,7 @@ Esquema da resposta:
 ]
 ```
 ---
--**GET /Veiculo/getVeiculo/{id_veiculo}**
+- **GET /Veiculo/getVeiculo/{id_veiculo}**
 
 Busca um veículo no banco de dados a partir do id
 
@@ -96,5 +96,31 @@ Esquema da resposta:
   "km": 0,
   "id_modelo": 2
 }
+```
+---
+- **POST /Veiculo/createVeiculo**
+
+Verbo responsavel por adicionar veículos no banco de dados
+
+Esquema da requisição:
+
+>https://localhost:44312/Veiculo/createVeiculo
+
+No json:
+```json
+{
+  "id_veiculo": 3,
+  "data_cadastro": "2022-10-09T02:13:57.063Z",
+  "id_placa": 4,
+  "id_cor": 3,
+  "km": 3,
+  "id_modelo": 3
+}
+```
+
+Esquema da resposta:
+
+```json
+true
 ```
 ---
