@@ -121,7 +121,7 @@ No json:
 Esquema da resposta:
 
 ```json
-true
+True
 ```
 ---
 - **PUT /Veiculo/updateVeiculo**
@@ -147,5 +147,32 @@ No json:
 Esquema da resposta:
 
 ```json
-true
+True
+```
+---
+- **DELETE /Veiculo/deleteVeiculo**
+
+Verbo responsavel por excluir o veículo do banco de dados
+
+Esquema da requisição:
+
+>https://localhost:44312/Veiculo/deleteVeiculo
+
+No json:
+
+```json
+  {
+    "id_veiculo": 3,
+    "data_cadastro": "2022-10-09T02:13:57.063",
+    "id_placa": 4,
+    "id_cor": 3,
+    "km": 3,
+    "id_modelo": 3
+  }
+```
+
+Esquema da resposta:
+
+```json
+True
 ```
