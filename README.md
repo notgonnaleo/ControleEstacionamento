@@ -124,3 +124,28 @@ Esquema da resposta:
 true
 ```
 ---
+- **PUT /Veiculo/updateVeiculo**
+
+Verbo responsavel pela atualização do veículo no banco de dados 
+
+Esquema da requisição:
+
+>https://localhost:44312/Veiculo/updateVeiculo
+
+No json:
+
+```json
+{
+  "id_veiculo": 3,
+  "data_cadastro": "2022-10-09T02:26:32.670Z",
+  "id_placa": 4,
+  "id_cor": 3,
+  "km": 5000,
+  "id_modelo": 3
+}
+```
+Esquema da resposta:
+
+```json
+true
+```
