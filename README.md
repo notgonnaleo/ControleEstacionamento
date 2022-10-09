@@ -52,7 +52,7 @@ Confira os Veículos registrados no banco de dados
 
 Esquema da requisição:
 
->https://localhost:44312/swagger/index.html
+>https://localhost:44312/Veiculo/getVeiculos
 
 Esquema da resposta:
 
@@ -77,5 +77,24 @@ Esquema da resposta:
 ]
 ```
 ---
+-**GET /Veiculo/getVeiculo/{id_veiculo}**
 
+Busca um veículo no banco de dados a partir do id
 
+Esquema da requisição:
+
+>https://localhost:44312/Veiculo/getVeiculo/2
+
+Esquema da resposta:
+
+```json
+{
+  "id_veiculo": 2,
+  "data_cadastro": "2022-10-07T20:30:49.197",
+  "id_placa": 3,
+  "id_cor": 5,
+  "km": 0,
+  "id_modelo": 2
+}
+```
+---
