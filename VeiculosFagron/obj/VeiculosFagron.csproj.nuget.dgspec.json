@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Giovanni Cabral\\source\\repos\\VeiculosBackEnd\\VeiculosFagron\\VeiculosFagron.csproj": {}
+    "C:\\Users\\L E O\\source\\repos\\VeiculosFagron\\VeiculosFagron\\VeiculosFagron.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Giovanni Cabral\\source\\repos\\VeiculosBackEnd\\VeiculosFagron\\VeiculosFagron.csproj": {
+    "C:\\Users\\L E O\\source\\repos\\VeiculosFagron\\VeiculosFagron\\VeiculosFagron.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Giovanni Cabral\\source\\repos\\VeiculosBackEnd\\VeiculosFagron\\VeiculosFagron.csproj",
+        "projectUniqueName": "C:\\Users\\L E O\\source\\repos\\VeiculosFagron\\VeiculosFagron\\VeiculosFagron.csproj",
         "projectName": "VeiculosFagron",
-        "projectPath": "C:\\Users\\Giovanni Cabral\\source\\repos\\VeiculosBackEnd\\VeiculosFagron\\VeiculosFagron.csproj",
-        "packagesPath": "C:\\Users\\Giovanni Cabral\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Giovanni Cabral\\source\\repos\\VeiculosBackEnd\\VeiculosFagron\\obj\\",
+        "projectPath": "C:\\Users\\L E O\\source\\repos\\VeiculosFagron\\VeiculosFagron\\VeiculosFagron.csproj",
+        "packagesPath": "C:\\Users\\L E O\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\L E O\\source\\repos\\VeiculosFagron\\VeiculosFagron\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "F:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Giovanni Cabral\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\L E O\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -83,8 +83,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -96,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     }
