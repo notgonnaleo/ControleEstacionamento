@@ -7,7 +7,7 @@ namespace VeiculosFagron.Repository
 {
     public interface IVeiculoRepository
     {
-        public Task<List<Veiculo>> GetVeiculos();
+        public Task<List<VeiculoCompleto>> GetVeiculos();
         public Task<Veiculo> GetVeiculo(int id_veiculo);
         public Task<bool> CreateVeiculo(Veiculo model);
         public Task<bool> UpdateVeiculo(Veiculo model);

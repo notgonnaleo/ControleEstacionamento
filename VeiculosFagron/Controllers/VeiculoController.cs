@@ -40,7 +40,7 @@ namespace VeiculosFagron.Controllers
 
         [HttpGet]
         [Route("getVeiculos")]
-        public async Task<ActionResult<List<Veiculo>>> getVeiculos()
+        public async Task<ActionResult<List<VeiculoCompleto>>> getVeiculos()
         {
             try
             {

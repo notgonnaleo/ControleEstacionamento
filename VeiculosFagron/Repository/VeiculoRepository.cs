@@ -25,15 +25,29 @@ namespace VeiculosFagron.Repository
         
         #endregion
 
-        public async Task<List<Veiculo>> GetVeiculos()
+        public async Task<List<VeiculoCompleto>> GetVeiculos()
         {
 
-            var response = new List<Veiculo>();
+            var response = new List<VeiculoCompleto>();
 
             using var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
 
-            var query = @"SELECT * FROM Veiculo(nolock)";
-            response = (List<Veiculo>)await connection.QueryAsync<Veiculo>(query);
+            var query = @"SELECT id_veiculo,
+                        v.id_placa,
+                        v.id_modelo,
+                        v.id_cor,
+                        v.data_cadastro, 
+                        v.km, 
+                        m.descricao_modelo, 
+                        p.numero_placa, 
+                        p.modelo_placa, 
+                        c.nome_cor
+                        FROM Veiculo v 
+                        LEFT OUTER JOIN Modelo m ON v.id_modelo = m.id_modelo
+                        LEFT OUTER JOIN Placa p ON v.id_placa = p.id_placa
+                        LEFT OUTER JOIN Cor c ON v.id_cor = c.id_cor
+                        ";
+            response = (List<VeiculoCompleto>)await connection.QueryAsync<VeiculoCompleto>(query);
 
             return response;
 

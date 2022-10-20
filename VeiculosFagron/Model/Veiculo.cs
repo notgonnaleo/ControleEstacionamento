@@ -11,4 +11,12 @@ namespace VeiculosFagron
         public float km { get; set; }
         public int id_modelo { get; set; }
     }
+
+    public class VeiculoCompleto : Veiculo
+    {
+        public string descricao_modelo { get; set; }
+        public string numero_placa { get; set; }
+        public int modelo_placa { get; set; }
+        public string nome_cor { get; set; }
+    }
 }
